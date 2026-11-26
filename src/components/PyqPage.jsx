@@ -105,10 +105,6 @@ export function PyqPage() {
       <div className="card" style={{ marginBottom: 22 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginBottom: 12 }}>
           <h2 style={{ margin: 0, fontSize: 19 }}>High-Yield Topic Heatmap</h2>
-          <a href={courseConfig.ascPortalUrl} target="_blank" rel="noreferrer" className="btn btn-sm">
-            <span>ASC GAMAT101 Portal</span>
-            <ExternalLink size={13} />
-          </a>
         </div>
         <div className="data-table-wrap" style={{ margin: 0 }}>
           <table className="data-table">

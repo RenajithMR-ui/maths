@@ -86,6 +86,16 @@ export const quizzesData = [
       'Since $f$ has continuous partial derivatives everywhere, $f_{xy} = f_{yx}$ by Clairaut’s Mixed Derivative Theorem.',
   },
   {
+    id: 'q-7b',
+    moduleId: 2,
+    topicId: 'm2-chain-implicit',
+    question: 'If $F(x, y, z) = 0$ defines $z(x, y)$ implicitly with $F_z \\ne 0$, then $\\frac{\\partial z}{\\partial x}$ equals:',
+    options: ['$\\frac{F_x}{F_z}$', '$-\\frac{F_x}{F_z}$', '$-\\frac{F_z}{F_x}$', '$-\\frac{F_y}{F_z}$'],
+    correctIndex: 1,
+    explanation:
+      'By the multivariable chain rule on $F(x, y, z) = 0$ with $y$ held constant, $F_x + F_z \\frac{\\partial z}{\\partial x} = 0 \\implies \\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}$.',
+  },
+  {
     id: 'q-8',
     moduleId: 3,
     topicId: 'm3-gradient',

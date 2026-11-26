@@ -4,6 +4,7 @@ import { modulesData } from '../data/modules';
 import { topicsData } from '../data/topics';
 import { courseConfig } from '../data/courseConfig';
 import { useCourse } from '../context/CourseContext';
+import { MathText } from './MathText';
 
 export function MindMapPage() {
   const { navigate } = useCourse();
@@ -139,7 +140,7 @@ export function MindMapPage() {
                                 className="badge badge-muted"
                                 style={{ fontSize: 11.5, fontWeight: 500 }}
                               >
-                                {sub}
+                                <MathText text={sub} />
                               </span>
                             ))}
                           </div>

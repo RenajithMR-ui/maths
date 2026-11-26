@@ -30,35 +30,47 @@ export const topicsData = {
     sections: [
       {
         num: '01',
-        title: 'Limits, Existence Condition & L’Hôpital’s Rule',
-        paragraphs: [
-          'The limit $\\lim_{x \\to c} f(x) = L$ describes the value $f(x)$ approaches as $x \\to c$ from both left and right sides.',
-          'When direct substitution yields $\\frac{0}{0}$ or $\\frac{\\pm\\infty}{\\pm\\infty}$ and $f, g$ are differentiable near $c$, **L’Hôpital’s Rule** states that $\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f\'(x)}{g\'(x)}$ (provided the right-hand limit exists or is $\\pm\\infty$).',
+        title: 'Limits, Existence Condition, Limit Laws & Standard Forms',
+        bullets: [
+          '**One-Sided Limits**: $\\text{LHL} = \\lim_{x \\to a^-} f(x) = \\lim_{h \\to 0} f(a - h)$ and $\\text{RHL} = \\lim_{x \\to a^+} f(x) = \\lim_{h \\to 0} f(a + h)$. Limit exists iff $\\text{LHL} = \\text{RHL} = L$.',
+          '**Basic Limits**: Identity $\\lim_{x\\to c} x = c$, Constant $\\lim_{x\\to c} k = k$, Infinity shortcut $\\frac{a}{\\infty} = 0$.',
+          '**Standard Limits & L’Hôpital**: $\\lim_{x\\to 0}\\frac{\\sin x}{x} = 1$, $\\lim_{x\\to 0}\\frac{\\log(1+x)}{x} = 1$, $\\lim_{x\\to 0}\\frac{e^x-1}{x} = 1$, $\\lim_{x\\to a}\\frac{x^n-a^n}{x-a} = n a^{n-1}$. For $\\frac{0}{0}$ or $\\frac{\\infty}{\\infty}$, differentiate numerator & denominator separately.',
+          '**Factoring Identities**: $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$ and $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$.',
         ],
         formula:
           '\\lim_{x \\to c} f(x) = L \\iff \\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x) = L',
+        table: {
+          headers: ['Limit Law', 'Formula (given $\\lim f = L,\\; \\lim g = M$)'],
+          rows: [
+            ['Sum / Difference', '$\\lim_{x\\to c}[f(x) \\pm g(x)] = L \\pm M$'],
+            ['Constant Multiple', '$\\lim_{x\\to c}[k\\,f(x)] = kL$'],
+            ['Product / Quotient', '$\\lim_{x\\to c}[f(x)g(x)] = LM, \\quad \\lim_{x\\to c}\\frac{f(x)}{g(x)} = \\frac{L}{M}\\;(M \\ne 0)$'],
+            ['Power / Root', '$\\lim_{x\\to c}[f(x)]^n = L^n, \\quad \\lim_{x\\to c}\\sqrt[n]{f(x)} = L^{1/n}$'],
+          ],
+        },
         keyIdea:
-          'Piecewise functions at boundary points must always be tested using Left-Hand Limit (LHL) and Right-Hand Limit (RHL) separately.',
+          'Piecewise functions at boundary points must always be tested using LHL and RHL separately.',
         workedExample: {
           problem:
             'Find the value of $k$ so that $f(x) = \\begin{cases} \\frac{\\sin(3x)}{x}, & x \\ne 0 \\\\ k - 1, & x = 0 \\end{cases}$ is continuous at $x = 0$.',
           steps: [
-            'Compute the limit as $x \\to 0$: $\\lim_{x \\to 0} \\frac{\\sin(3x)}{x} = 3 \\lim_{x \\to 0} \\frac{\\sin(3x)}{3x} = 3(1) = 3$ (or by L’Hôpital’s Rule: $\\lim_{x \\to 0} \\frac{3\\cos(3x)}{1} = 3$).',
-            'At the point: $f(0) = k - 1$.',
-            'For continuity at $x = 0$, set $\\lim_{x \\to 0} f(x) = f(0) \\implies 3 = k - 1 \\implies k = 4$.',
+            'Compute $\\lim_{x \\to 0} \\frac{\\sin(3x)}{x} = 3 \\lim_{x \\to 0} \\frac{\\sin(3x)}{3x} = 3$ (or by L’Hôpital: $\\frac{3\\cos(3x)}{1} \\to 3$).',
+            'Equate limit to $f(0) = k - 1 \\implies 3 = k - 1 \\implies k = 4$.',
           ],
           answer: '$k = 4$.',
         },
       },
       {
         num: '02',
-        title: 'Sandwich Theorem, Discontinuities & IVT',
-        paragraphs: [
-          'If $g(x) \\le f(x) \\le h(x)$ near $c$ and $\\lim_{x \\to c} g(x) = \\lim_{x \\to c} h(x) = L$, then $\\lim_{x \\to c} f(x) = L$.',
+        title: 'Sandwich Theorem, Continuity Properties & IVT',
+        bullets: [
+          '**Sandwich (Squeeze) Theorem**: If $g(x) \\le f(x) \\le h(x)$ near $c$ and $\\lim_{x \\to c} g(x) = \\lim_{x \\to c} h(x) = L$, then $\\lim_{x \\to c} f(x) = L$.',
+          '**One-Sided Continuity**: Continuous from right if $\\lim_{x\\to a^+} f(x) = f(a)$; from left if $\\lim_{x\\to a^-} f(x) = f(a)$.',
+          '**Continuous Function Properties**: Sums $(f\\pm g)$, scalar multiples $(cf)$, and compositions $(g\\circ f)$ preserve continuity. Polynomials, $e^x$, $\\sin x$, $\\cos x$ are continuous everywhere; $\\tan x$ is discontinuous at $\\cos x = 0$, i.e. $x = (2n+1)\\frac{\\pi}{2}$. Discontinuities occur where **denominator $= 0$**.',
           '**Intermediate Value Theorem (IVT)**: If $f$ is continuous on $[a, b]$ and $k$ lies between $f(a)$ and $f(b)$, there exists $c \\in [a, b]$ such that $f(c) = k$.',
         ],
         table: {
-          headers: ['Discontinuity Type', 'Behavior at x = c', 'Example'],
+          headers: ['Discontinuity Type', 'Behavior at $x = c$', 'Example'],
           rows: [
             ['Removable', 'Limit exists, but $\\lim_{x\\to c} f(x) \\ne f(c)$', '$\\frac{\\sin x}{x}$ undefined at $x=0$'],
             ['Jump', 'LHL and RHL both exist, but $\\text{LHL} \\ne \\text{RHL}$', 'Step function $\\lfloor x \\rfloor$ at integers'],
@@ -94,27 +106,39 @@ export const topicsData = {
     sections: [
       {
         num: '01',
-        title: 'Rates of Change, Higher-Order Derivatives & Chain Rule',
-        paragraphs: [
-          'The average rate of change over $[x_0, x_0+h]$ is $\\frac{f(x_0+h)-f(x_0)}{h}$, while the instantaneous rate of change at $x_0$ is $f\'(x_0)$.',
-          'Taking successive derivatives gives $f\'\'(x) = \\frac{d^2y}{dx^2}$, $f\'\'\'(x)$, etc. In rectilinear motion, $s\'(t) = v(t)$ (velocity) and $s\'\'(t) = a(t)$ (acceleration).',
+        title: 'First Principle, Standard Derivatives & Differentiation Rules',
+        bullets: [
+          '**First Principle & Alternative Form**: $f\'(a) = \\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h} = \\lim_{z\\to a}\\frac{f(z)-f(a)}{z-a}$ (gives curve slope, tangent slope, and instantaneous rate of change at $x=a$).',
+          '**Basic Rules**: Constant $\\frac{d}{dx}(c) = 0$; Identity $\\frac{d}{dx}(x) = 1$; Power $\\frac{d}{dx}(x^n) = nx^{n-1}$; Sum/Diff $(u\\pm v)\' = u\' \\pm v\'$; Scalar $(ku)\' = k u\'$.',
+          '**Product & Quotient Rules**: $(uv)\' = u v\' + v u\'$; $\\left(\\frac{u}{v}\\right)\' = \\frac{v u\' - u v\'}{v^2}$ ($v \\ne 0$).',
+          '**Chain Rule & Rectilinear Motion**: $\\frac{dy}{dx} = \\frac{dy}{dt}\\cdot\\frac{dt}{dx}$; velocity $v(t) = s\'(t)$ and acceleration $a(t) = s\'\'(t)$.',
         ],
         formula:
-          '\\frac{d}{dx}[f(g(x))] = f\'(g(x)) \\cdot g\'(x)',
+          'f\'(a) = \\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}, \\qquad \\frac{d}{dx}[f(g(x))] = f\'(g(x)) \\cdot g\'(x)',
+        table: {
+          headers: ['Function', 'Derivative', 'Trig Function', 'Derivative'],
+          rows: [
+            ['$x^n$', '$n x^{n-1}$', '$\\sin x$', '$\\cos x$'],
+            ['$\\sqrt{x}$', '$\\frac{1}{2\\sqrt{x}}$', '$\\cos x$', '$-\\sin x$'],
+            ['$e^x$', '$e^x$', '$\\tan x$', '$\\sec^2 x$'],
+            ['$\\log x$', '$\\frac{1}{x}$', '$\\csc x$', '$-\\csc x \\cot x$'],
+            ['$a^x$', '$a^x \\log a$', '$\\sec x$', '$\\sec x \\tan x$'],
+            ['$c$ (constant)', '$0$', '$\\cot x$', '$-\\csc^2 x$'],
+          ],
+        },
       },
       {
         num: '02',
-        title: 'Implicit Differentiation',
-        paragraphs: [
-          'When an equation relates $x$ and $y$ implicitly (such as $x^3 + y^3 = 9xy$), differentiate both sides with respect to $x$ treating $y$ as a differentiable function of $x$.',
+        title: 'Implicit & Logarithmic Differentiation',
+        bullets: [
+          '**Implicit Method**: Differentiate $F(x, y) = 0$ wrt $x$, multiplying any $y$-derivative by $\\frac{dy}{dx}$ (shortcut: $\\frac{dy}{dx} = -\\frac{F_x}{F_y}$).',
+          '**Logarithmic Trick**: For $y = [u(x)]^{v(x)}$, take $\\ln y = v(x)\\ln u(x)$ before differentiating.',
         ],
         workedExample: {
           problem: 'Find $\\frac{dy}{dx}$ for the Folium of Descartes $x^3 + y^3 - 9xy = 0$ at $(2, 4)$.',
           steps: [
-            'Differentiate term-by-term wrt $x$: $3x^2 + 3y^2 \\frac{dy}{dx} - 9\\left(y + x\\frac{dy}{dx}\\right) = 0$.',
-            'Group $\\frac{dy}{dx}$ terms: $(3y^2 - 9x)\\frac{dy}{dx} = 9y - 3x^2$.',
-            'Solve: $\\frac{dy}{dx} = \\frac{3y - x^2}{y^2 - 3x}$.',
-            'Evaluate at $(2, 4)$: $\\frac{dy}{dx} = \\frac{12 - 4}{16 - 6} = \\frac{8}{10} = \\frac{4}{5}$.',
+            'Differentiate wrt $x$: $3x^2 + 3y^2 \\frac{dy}{dx} - 9\\left(y + x\\frac{dy}{dx}\\right) = 0$.',
+            'Isolate $\\frac{dy}{dx} = \\frac{3y - x^2}{y^2 - 3x}$; at $(2, 4)$, $\\frac{12 - 4}{16 - 6} = \\frac{4}{5}$.',
           ],
           answer: '$\\frac{dy}{dx} = \\frac{3y - x^2}{y^2 - 3x}$, and at $(2,4)$ the slope is $\\frac{4}{5}$.',
         },
@@ -191,45 +215,49 @@ export const topicsData = {
   'm2-multivariable': {
     id: 'm2-multivariable',
     moduleId: 2,
-    title: 'Domains, Ranges & Level Curves',
+    title: 'Functions of Several Variables, Disks & Level Curves',
     summary:
-      'Extending functions to multiple independent variables, finding valid 2D domains, sketching level curves (contours), and interpreting level surfaces.',
+      'Short notes on functions of two and n variables, domain & range rules, 3D surfaces, open/punctured disks D(P,r) & D*(P,r), and level curve contours.',
     subtopics: [
-      'Functions of Two & More Variables',
+      'Functions of Two & n Variables',
       'Domain & Range Restrictions',
+      'Open Disk D(P, r) & Punctured Disk D*(P, r)',
       'Level Curves f(x, y) = c',
-      'Level Surfaces f(x, y, z) = c',
     ],
     keyTakeaways: [
-      'Domain restrictions arise from denominators ($\\ne 0$), even roots ($\\ge 0$), and logarithms ($> 0$).',
-      'A level curve $f(x, y) = c$ is the 2D projection of the slice where surface height $z = c$.',
-      'Closely spaced level curves signify steep terrain; widely spaced curves signify gentle slope.',
+      'A real-valued function $w = f(x_1, \\dots, x_n)$ maps each $n$-tuple in $D \\subseteq \\mathbb{R}^n$ to a unique real number.',
+      'Check domains using 3 rules: denominators $\\ne 0$, even roots $\\ge 0$, and logarithms $> 0$.',
+      'Punctured disk $D^*(P, r)$ removes center $P$ from $D(P, r)$ so limits depend on nearby behavior, not $f(a,b)$.',
+      'Level curves $f(x, y) = c$ for distinct $c_1 \\ne c_2$ never intersect; closely packed curves indicate steep slope.',
     ],
     sections: [
       {
         num: '01',
-        title: 'Domains & Ranges of f(x, y)',
-        paragraphs: [
-          'A function of two variables maps ordered pairs $(x, y) \\in D \\subseteq \\mathbb{R}^2$ to a unique real number $z = f(x, y)$.',
+        title: 'Functions of Several Variables, Domain & Range',
+        bullets: [
+          '**General Definition**: For $D \\subseteq \\mathbb{R}^n$, $w = f(x_1, \\dots, x_n)$ has **independent variables** $x_1, \\dots, x_n$ and **dependent variable** $w$.',
+          '**Two Variables**: $z = f(x, y)$ maps points $(x, y) \\in D \\subseteq \\mathbb{R}^2$ to heights $z$, forming a surface in $\\mathbb{R}^3$ (e.g. $z = e^{-(x^2+y^2)}$).',
+          '**Quick Domain Checks**: Keep denominators non-zero, expressions inside $\\sqrt{\\cdot}$ non-negative, and $\\ln(\\cdot)$ arguments strictly positive.',
         ],
         workedExample: {
           problem: 'Find the domain and range of $f(x, y) = \\sqrt{9 - x^2 - y^2}$.',
           steps: [
-            'Inside the square root must be non-negative: $9 - x^2 - y^2 \\ge 0 \\implies x^2 + y^2 \\le 9$.',
-            'Geometrically, the domain is the closed disk of radius $3$ centered at $(0, 0)$.',
-            'Since $0 \\le 9 - x^2 - y^2 \\le 9$, taking the square root yields $0 \\le z \\le 3$.',
+            'Require $9 - x^2 - y^2 \\ge 0 \\implies x^2 + y^2 \\le 9$ (closed disk of radius $3$ centered at $(0, 0)$).',
+            'Since $0 \\le 9 - x^2 - y^2 \\le 9$, taking square roots gives $0 \\le z \\le 3$.',
           ],
-          answer: 'Domain: $\\{(x, y) : x^2 + y^2 \\le 9\\}$; Range: $[0, 3]$.',
+          answer: 'Domain: $\\{(x, y) \\in \\mathbb{R}^2 : x^2 + y^2 \\le 9\\}$; Range: $[0, 3]$.',
         },
       },
       {
         num: '02',
-        title: 'Level Curves & Contour Maps',
+        title: 'Open Disks, Punctured Disks & Level Curves',
         paragraphs: [
-          'Setting $f(x, y) = c$ for constants $c$ yields planar contour curves. For $f(x, y) = x^2 + y^2$, the level curves for $c > 0$ are concentric circles of radius $\\sqrt{c}$. For $f(x, y) = y^2 - x^2$ (hyperbolic paraboloid), level curves are hyperbolas.',
+          'To formalize 2D limits around $P = (a, b)$, use neighborhoods called the **open disk** $D(P, r)$ and **punctured disk** $D^*(P, r)$. Setting $f(x, y) = c$ produces 2D **level curves** (contours).',
         ],
+        formula:
+          'D(P, r) = \\{(x, y) \\in \\mathbb{R}^2 \\mid (x-a)^2 + (y-b)^2 < r^2\\}, \\qquad D^*(P, r) = \\{(x, y) \\in \\mathbb{R}^2 \\mid 0 < (x-a)^2 + (y-b)^2 < r^2\\}',
         keyIdea:
-          'Level curves for distinct constants $c_1 \\ne c_2$ never intersect because $f(x, y)$ is single-valued.',
+          'For $f(x, y) = x^2 + y^2$, level curves ($c > 0$) are concentric circles of radius $\\sqrt{c}$; for $f(x, y) = y^2 - x^2$, they are hyperbolas.',
       },
     ],
   },
@@ -239,49 +267,84 @@ export const topicsData = {
     moduleId: 2,
     title: 'Limits & Continuity of Two Variables',
     summary:
-      'Evaluating limits in 2D space, proving non-existence using the two-path test, proving existence via polar coordinates, and verifying 2D continuity.',
+      'Short notes on the ε-δ definition, Limit Laws (Theorem 1.1), Squeeze Theorem, Two-Path non-existence test, polar limits, and 2D continuity.',
     subtopics: [
-      '2D Neighborhood Limits',
-      'Two-Path Test for Non-Existence',
-      'Polar Coordinate Method (r, θ)',
-      'Continuity of f(x, y)',
+      'ε-δ Definition of 2D Limit',
+      'Limit Laws, Polynomial & Rational Rules',
+      'Squeeze (Sandwich) Theorem',
+      'Two-Path & Curved-Path Tests',
+      'Continuity & Removable Extensions',
     ],
     keyTakeaways: [
-      'A 2D limit exists only if $f(x, y)$ approaches the SAME value along EVERY possible path to $(x_0, y_0)$.',
-      'To prove a limit does NOT exist, find two paths (e.g. $y = mx$, $x = my^2$) yielding different limits.',
-      'Polar coordinates ($x = r\\cos\\theta, y = r\\sin\\theta$) convert $(x,y) \\to (0,0)$ into $r \\to 0^+$: if bounded in $\\theta$ times $r^k$ ($k > 0$), the limit is $0$.',
+      'Formal $\\epsilon$-$\delta$ limit: $\\lim_{(x,y)\\to(a,b)} f(x,y) = L$ iff $0 < \\sqrt{(x-a)^2 + (y-b)^2} < \\delta \\implies |f(x,y) - L| < \\epsilon$.',
+      'All polynomials are continuous everywhere ($\\lim P(x,y) = P(a,b)$); rational functions $P/Q$ are continuous wherever $Q(a,b) \\ne 0$.',
+      'Agreeing on all straight lines $y = mx$ does NOT prove existence — always check curved paths (e.g. $y = kx^2$) or prove with Squeeze Theorem / polar coordinates.',
     ],
     sections: [
       {
         num: '01',
-        title: 'Two-Path Test for Non-Existence',
-        paragraphs: [
-          'If $f(x, y) \\to L_1$ along path $C_1$ and $f(x, y) \\to L_2$ along path $C_2$ with $L_1 \\ne L_2$, then $\\lim_{(x,y) \\to (x_0, y_0)} f(x, y)$ does not exist.',
-        ],
-        workedExample: {
-          problem: 'Test the existence of $\\lim_{(x,y) \\to (0,0)} \\frac{xy^2}{x^2 + y^4}$.',
-          steps: [
-            'Along straight lines $y = mx$: $\\lim_{x \\to 0} \\frac{m^2 x^3}{x^2 + m^4 x^4} = \\lim_{x \\to 0} \\frac{m^2 x}{1 + m^4 x^2} = 0$.',
-            'Along parabolic path $x = y^2$: $\\lim_{y \\to 0} \\frac{y^2 \\cdot y^2}{(y^2)^2 + y^4} = \\lim_{y \\to 0} \\frac{y^4}{2y^4} = \\frac{1}{2}$.',
-            'Since $0 \\ne \\frac{1}{2}$, the limit does not exist!',
+        title: 'ε-δ Definition & Limit Evaluation Rules (Theorem 1.1)',
+        formula:
+          '0 < \\sqrt{(x - a)^2 + (y - b)^2} < \\delta \\implies |f(x, y) - L| < \\epsilon',
+        table: {
+          headers: ['Function Type', 'Quick Limit Rule', 'Short Example'],
+          rows: [
+            ['Polynomial $P(x,y)$', 'Direct substitution: $P(a, b)$', '$\\lim_{(1,2)} (3x^2y - 2xy^3) = -10$'],
+            ['Rational $P(x,y)/Q(x,y)$', 'Substitute if $Q(a, b) \\ne 0$', '$\\lim_{(1,2)} \\frac{x^2+y}{x+y^2} = \\frac{3}{5}$'],
+            ['Separable $g(x)h(y)$', '$\\lim_{x\\to a} g(x) \\cdot \\lim_{y\\to b} h(y)$', '$\\lim_{(0,0)} \\frac{\\sin x\\sin y}{xy} = 1 \\cdot 1 = 1$'],
+            ['$0/0$ Form', 'Two-path test (DNE) or Squeeze / Polar', 'Check $y=mx$ and $y=kx^2$'],
           ],
-          answer: 'The limit does not exist (paths $y = mx$ and $x = y^2$ disagree).',
+        },
+        workedExample: {
+          problem: 'Prove $\\lim_{(x,y)\\to(a,b)} x = a$ using the $\\epsilon$-$\delta$ definition.',
+          steps: [
+            'Note $|f(x, y) - a| = |x - a| = \\sqrt{(x-a)^2} \\le \\sqrt{(x-a)^2 + (y-b)^2}$.',
+            'Choose $\\delta = \\epsilon$: whenever $0 < \\sqrt{(x-a)^2 + (y-b)^2} < \\delta = \\epsilon$, we immediately get $|x - a| < \\epsilon$.',
+          ],
+          answer: 'Limit equals $a$ with $\\delta = \\epsilon$.',
         },
       },
       {
         num: '02',
-        title: 'Proving Existence via Polar Coordinates',
-        paragraphs: [
-          'Agreement along straight lines is never enough to prove a limit exists. Use algebraic bounds or substitute $x = r\\cos\\theta, y = r\\sin\\theta$ with $r \\to 0^+$.',
+        title: 'Two-Path Non-Existence Test & Squeeze Theorem',
+        bullets: [
+          '**Two-Path Test**: If $f(x, y)$ approaches $L_1 \\ne L_2$ along two different paths toward $(a, b)$, the limit **does not exist**.',
+          '**Squeeze (Sandwich) Theorem**: If $g(x,y) \\le f(x,y) \\le h(x,y)$ near $(a,b)$ and both outer limits equal $L$, then $\\lim_{(x,y)\\to(a,b)} f(x,y) = L$.',
+          '**Polar Trick**: Set $x = r\\cos\\theta, y = r\\sin\\theta$ as $r \\to 0^+$; if $|f(x,y)| \\le C r^k$ ($k > 0$), the limit is $0$.',
+        ],
+        workedExamples: [
+          {
+            problem: 'Test existence at $(0, 0)$ for (a) $f(x,y) = \\frac{xy}{x^2+y^2}$ and (b) $h(x,y) = \\frac{2x^2y}{x^4+y^2}$.',
+            steps: [
+              'For (a) along line $y = mx$: $f(x, mx) = \\frac{mx^2}{(1+m^2)x^2} = \\frac{m}{1+m^2}$, which depends on $m$.',
+              'For (b) along parabolic path $y = kx^2$: $h(x, kx^2) = \\frac{2kx^4}{(1+k^2)x^4} = \\frac{2k}{1+k^2}$, which depends on $k$ (even though straight lines give $0$).',
+            ],
+            answer: 'Neither limit exists at $(0, 0)$.',
+          },
+          {
+            problem: 'Evaluate $\\lim_{(x,y)\\to(0,0)} \\frac{x^2 y}{x^2 + y^2}$ using the Squeeze Theorem.',
+            steps: [
+              'Since $0 \\le \\frac{x^2}{x^2+y^2} \\le 1$, we get $0 \\le \\left|\\frac{x^2y}{x^2+y^2}\\right| \\le |y|$.',
+              'Thus $-|y| \\le \\frac{x^2y}{x^2+y^2} \\le |y|$; as $(x,y)\\to(0,0)$, $\\pm|y| \\to 0$.',
+            ],
+            answer: 'By the Squeeze Theorem, the limit exists and equals $0$.',
+          },
+        ],
+      },
+      {
+        num: '03',
+        title: 'Continuity of f(x, y)',
+        bullets: [
+          '**3 Conditions at $(a,b)$**: (1) $f(a,b)$ is defined, (2) $\\lim_{(x,y)\\to(a,b)} f(x,y)$ exists, and (3) $\\lim_{(x,y)\\to(a,b)} f(x,y) = f(a,b)$.',
+          '**Removable Discontinuity**: If $Q(a,b)=0$ in $P/Q$ but the limit $L$ exists, redefining $R(a,b)=L$ makes it continuous.',
         ],
         workedExample: {
-          problem: 'Show that $\\lim_{(x,y) \\to (0,0)} \\frac{3x^2 y}{x^2 + y^2} = 0$.',
+          problem: 'Check continuity at $(0,0)$ for $f(x,y)=\\frac{xy}{x^2+y^2}$ and $g(x,y)=\\frac{x^2y}{x^2+y^2}$ (both defined as $0$ at $(0,0)$).',
           steps: [
-            'Substitute $x = r\\cos\\theta$, $y = r\\sin\\theta$, $x^2 + y^2 = r^2$.',
-            'Expression becomes $\\frac{3r^3 \\cos^2\\theta \\sin\\theta}{r^2} = 3r\\cos^2\\theta\\sin\\theta$.',
-            'Since $|\\cos^2\\theta \\sin\\theta| \\le 1$, we have $0 \\le |f(x,y)| \\le 3r \\to 0$ as $r \\to 0^+$.',
+            'Both are rational with non-zero denominator everywhere away from $(0,0)$, hence continuous for $(x,y)\\ne(0,0)$.',
+            'At $(0,0)$: $\\lim f$ does not exist $\\implies f$ is discontinuous at $(0,0)$; whereas $\\lim g = 0 = g(0,0) \\implies g$ is continuous everywhere.',
           ],
-          answer: 'By the Sandwich Theorem, the limit exists and equals $0$.',
+          answer: '$f$ is discontinuous at $(0,0)$; $g$ is continuous everywhere.',
         },
       },
     ],
@@ -290,48 +353,155 @@ export const topicsData = {
   'm2-partials': {
     id: 'm2-partials',
     moduleId: 2,
-    title: 'Partial Derivatives, Clairaut’s Theorem & Chain Rule',
+    title: 'Partial Derivatives & Higher-Order Partials',
     summary:
-      'Computing first- and second-order partial derivatives, partial derivatives vs continuity, Clairaut’s mixed derivative theorem, and the 2-variable Chain Rule.',
+      'Short notes on limit definitions of f_x and f_y, surface trace slope interpretation, piecewise origin partials, Clairaut’s theorem + counterexample, and Laplace PDE.',
     subtopics: [
-      'First-Order Partial Derivatives',
-      'Partial Derivatives & Continuity',
-      'Second-Order Partial Derivatives',
-      'Mixed Derivative Theorem (Clairaut)',
-      'Chain Rule (1 & 2 Independent Parameters)',
+      'Limit Definitions of f_x & f_y',
+      'Slope of Trace Interpretation',
+      'Piecewise Partials at Origin',
+      'Clairaut’s Theorem & Counterexample',
+      'Laplace Equation Verification',
     ],
     keyTakeaways: [
-      'To compute $f_x$, treat $y$ (and other variables) as constants and differentiate wrt $x$.',
-      'Existence of $f_x$ and $f_y$ at $(a, b)$ does NOT guarantee continuity at $(a, b)$; however, continuous partial derivatives guarantee differentiability and continuity.',
-      'Clairaut’s Theorem: $f_{xy} = f_{yx}$ whenever the mixed partials are continuous.',
+      'To compute $f_x(x,y)$, hold $y$ constant and differentiate wrt $x$; at singular/piecewise points like $(0,0)$, use the limit definition directly.',
+      '$f_x(a,b)$ and $f_y(a,b)$ measure the **slope of the surface trace** in the $x$- and $y$-directions.',
+      'Existence of $f_x, f_y$ does NOT guarantee continuity at $(a,b)$; continuous partial derivatives guarantee both differentiability and continuity.',
+      'Clairaut’s Theorem: $f_{xy} = f_{yx}$ when mixed partials are continuous (fails if discontinuous, e.g. $\\frac{xy(x^2-y^2)}{x^2+y^2}$ at $(0,0)$).',
     ],
     sections: [
       {
         num: '01',
-        title: 'Partial Derivatives & Continuity Counterexample',
-        paragraphs: [
-          'Unlike 1D calculus where differentiability implies continuity, a 2-variable function can possess both $f_x(0,0)$ and $f_y(0,0)$ while still being **discontinuous** at $(0,0)$!',
-          'Classic KTU exam example: $f(x, y) = \\frac{xy}{x^2+y^2}$ for $(x,y) \\ne (0,0)$ and $f(0,0) = 0$. Here $f_x(0,0) = 0$ and $f_y(0,0) = 0$ (since $f(x,0)=0$ and $f(0,y)=0$), yet along $y = x$, $f(x,x) = \\frac{1}{2} \\ne 0$, so $f$ is NOT continuous at $(0,0)$.',
-        ],
+        title: 'First-Order Partials, Trace Slopes & Piecewise Points',
         formula:
-          '\\text{Clairaut\'s Theorem: } \\quad f_{xy}(a, b) = f_{yx}(a, b)',
+          'f_x(a,b) = \\lim_{h\\to 0}\\frac{f(a+h,b)-f(a,b)}{h}, \\qquad f_y(a,b) = \\lim_{h\\to 0}\\frac{f(a,b+h)-f(a,b)}{h}',
+        bullets: [
+          '**Geometric Meaning**: Intersecting $z=f(x,y)$ with a vertical plane along $x$ (or $y$) yields a **trace curve** whose tangent slope at $(a,b)$ is $f_x(a,b)$ (or $f_y(a,b)$).',
+          '**Important Exam Rule**: Never use the quotient rule at $(0,0)$ for piecewise functions with $x^2+y^2$ in the denominator — always evaluate $f_x(0,0) = \\lim_{x\\to 0}\\frac{f(x,0)-f(0,0)}{x}$.',
+        ],
+        workedExamples: [
+          {
+            problem: 'Find the slope of $z = 10 - 4x^2 - y^2$ at $(1, 2, 2)$ in the $x$- and $y$-directions.',
+            steps: [
+              '$\\frac{\\partial z}{\\partial x} = -8x \\implies \\left.\\frac{\\partial z}{\\partial x}\\right|_{(1,2,2)} = -8$ (slope in $x$-direction).',
+              '$\\frac{\\partial z}{\\partial y} = -2y \\implies \\left.\\frac{\\partial z}{\\partial y}\\right|_{(1,2,2)} = -4$ (slope in $y$-direction).',
+            ],
+            answer: 'Slopes are $-8$ ($x$-direction) and $-4$ ($y$-direction).',
+          },
+          {
+            problem: 'For $f(x,y) = \\frac{x^3-y^3}{x^2+y^2}$ ($(x,y)\\ne 0$), $f(0,0)=0$, find $f_x(0,0)$ and $f_y(0,0)$.',
+            steps: [
+              '$f_x(0,0) = \\lim_{x\\to 0} \\frac{f(x,0)-f(0,0)}{x-0} = \\lim_{x\\to 0} \\frac{x^3/x^2 - 0}{x} = 1$.',
+              '$f_y(0,0) = \\lim_{y\\to 0} \\frac{f(0,y)-f(0,0)}{y-0} = \\lim_{y\\to 0} \\frac{-y^3/y^2 - 0}{y} = -1$.',
+            ],
+            answer: '$f_x(0,0) = 1$ and $f_y(0,0) = -1$.',
+          },
+        ],
       },
       {
         num: '02',
-        title: 'Chain Rule for Functions of Two Variables',
-        paragraphs: [
-          'Case 1 (one parameter $t$): $\\frac{dw}{dt} = \\frac{\\partial f}{\\partial x}\\frac{dx}{dt} + \\frac{\\partial f}{\\partial y}\\frac{dy}{dt}$.',
-          'Case 2 (two independent parameters $u, v$): $\\frac{\\partial w}{\\partial u} = \\frac{\\partial w}{\\partial x}\\frac{\\partial x}{\\partial u} + \\frac{\\partial w}{\\partial y}\\frac{\\partial y}{\\partial u}$ and $\\frac{\\partial w}{\\partial v} = \\frac{\\partial w}{\\partial x}\\frac{\\partial x}{\\partial v} + \\frac{\\partial w}{\\partial y}\\frac{\\partial y}{\\partial v}$.',
+        title: 'Higher-Order Partials, Clairaut’s Theorem & Laplace PDE',
+        formula:
+          'f_{xy} = \\frac{\\partial^2 f}{\\partial y\\partial x}, \\quad f_{yx} = \\frac{\\partial^2 f}{\\partial x\\partial y}, \\qquad \\text{Clairaut/Schwarz: } f_{xy} = f_{yx}, \\qquad \\text{2D Laplace: } \\frac{\\partial^2 f}{\\partial x^2} + \\frac{\\partial^2 f}{\\partial y^2} = 0',
+        bullets: [
+          '**Continuity vs Existence**: $f(x,y) = \\frac{xy}{x^2+y^2}$ ($f(0,0)=0$) has $f_x(0,0)=f_y(0,0)=0$ yet is discontinuous at $(0,0)$.',
+          '**Clairaut Counterexample**: For $f(x,y) = \\frac{xy(x^2-y^2)}{x^2+y^2}$ ($f(0,0)=0$), $f_y(x,0)=x$ and $f_x(0,y)=-y$, giving $f_{xy}(0,0)=1 \\ne -1=f_{yx}(0,0)$.',
         ],
         workedExample: {
-          problem: 'If $w = x^2 + y^2$ where $x = r - s$ and $y = r + s$, find $\\frac{\\partial w}{\\partial r}$ and $\\frac{\\partial w}{\\partial s}$.',
+          problem: 'If $u = (x^2 + y^2 + z^2)^{-1/2}$, prove Laplace’s equation $u_{xx} + u_{yy} + u_{zz} = 0$.',
           steps: [
-            '$\\frac{\\partial w}{\\partial x} = 2x$, $\\frac{\\partial w}{\\partial y} = 2y$.',
-            '$\\frac{\\partial x}{\\partial r} = 1, \\; \\frac{\\partial y}{\\partial r} = 1 \\implies \\frac{\\partial w}{\\partial r} = 2x(1) + 2y(1) = 2(r-s) + 2(r+s) = 4r$.',
-            '$\\frac{\\partial x}{\\partial s} = -1, \\; \\frac{\\partial y}{\\partial s} = 1 \\implies \\frac{\\partial w}{\\partial s} = 2x(-1) + 2y(1) = -2(r-s) + 2(r+s) = 4s$.',
+            '$u_x = -\\frac{1}{2}(x^2+y^2+z^2)^{-3/2}(2x) = -x u^3$.',
+            'Differentiate again wrt $x$: $u_{xx} = -3x u^2 u_x - u^3 = 3x^2 u^5 - u^3$.',
+            'By symmetry, $u_{yy} = 3y^2 u^5 - u^3$ and $u_{zz} = 3z^2 u^5 - u^3$.',
+            'Add all three: $u_{xx}+u_{yy}+u_{zz} = 3u^5(x^2+y^2+z^2) - 3u^3 = 3u^5 u^{-2} - 3u^3 = 0$.',
           ],
-          answer: '$\\frac{\\partial w}{\\partial r} = 4r$ and $\\frac{\\partial w}{\\partial s} = 4s$.',
+          answer: '$u_{xx} + u_{yy} + u_{zz} = 0$.',
         },
+      },
+    ],
+  },
+
+  'm2-chain-implicit': {
+    id: 'm2-chain-implicit',
+    moduleId: 2,
+    title: 'Chain Rule & Implicit Differentiation',
+    summary:
+      'Short notes on multivariable chain rule (1 & 2 independent variables), total derivatives, wave PDE proof, and partial-derivative implicit shortcuts.',
+    subtopics: [
+      'Chain Rule (1 Parameter t)',
+      'Chain Rule (2 Parameters u, v)',
+      'Related Rates & Wave PDE',
+      'Implicit Shortcut -F_x/F_y & -F_x/F_z',
+    ],
+    keyTakeaways: [
+      '1 parameter $t$: $\\frac{dz}{dt} = z_x \\frac{dx}{dt} + z_y \\frac{dy}{dt}$ (known as the **total derivative**).',
+      '2 parameters $u, v$: $\\frac{\\partial z}{\\partial u} = z_x x_u + z_y y_u$ and $\\frac{\\partial z}{\\partial v} = z_x x_v + z_y y_v$.',
+      'Implicit 2D shortcut: $F(x,y)=0 \\implies \\frac{dy}{dx} = -\\frac{F_x}{F_y}$ ($F_y \\ne 0$).',
+      'Implicit 3D shortcut: $F(x,y,z)=0 \\implies \\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}$ and $\\frac{\\partial z}{\\partial y} = -\\frac{F_y}{F_z}$ ($F_z \\ne 0$).',
+    ],
+    sections: [
+      {
+        num: '01',
+        title: 'Multivariable Chain Rule (1 & 2 Independent Variables)',
+        formula:
+          '\\frac{dw}{dt} = \\frac{\\partial w}{\\partial x}\\frac{dx}{dt} + \\frac{\\partial w}{\\partial y}\\frac{dy}{dt} + \\frac{\\partial w}{\\partial z}\\frac{dz}{dt}, \\qquad \\frac{\\partial z}{\\partial u} = \\frac{\\partial z}{\\partial x}\\frac{\\partial x}{\\partial u} + \\frac{\\partial z}{\\partial y}\\frac{\\partial y}{\\partial u}',
+        table: {
+          headers: ['Case', 'Dependency', 'Derivative Formula'],
+          rows: [
+            ['1 parameter $t$', '$z = f(x(t), y(t))$', '$\\frac{dz}{dt} = f_x x\'(t) + f_y y\'(t)$'],
+            ['2 parameters $u,v$', '$z = f(x(u,v), y(u,v))$', '$z_u = f_x x_u + f_y y_u,\\; z_v = f_x x_v + f_y y_v$'],
+            ['Quotient variables', '$u = f(x/y, y/z, z/x)$', 'Always yields $x u_x + y u_y + z u_z = 0$'],
+          ],
+        },
+        workedExamples: [
+          {
+            problem:
+              'A cone has radius $x$ decreasing at $0.3\\text{ cm/s}$ and height $y$ increasing at $0.2\\text{ cm/s}$. Find $\\frac{dV}{dt}$ when $x = 10\\text{ cm}, y = 15\\text{ cm}$.',
+            steps: [
+              '$V = \\frac{1}{3}\\pi x^2 y \\implies V_x = \\frac{2}{3}\\pi x y$, $V_y = \\frac{1}{3}\\pi x^2$.',
+              'By chain rule: $\\frac{dV}{dt} = \\frac{2}{3}\\pi x y \\frac{dx}{dt} + \\frac{1}{3}\\pi x^2 \\frac{dy}{dt} = \\frac{2}{3}\\pi(10)(15)(-0.3) + \\frac{1}{3}\\pi(100)(0.2)$.',
+            ],
+            answer: '$\\frac{dV}{dt} = -\\frac{70}{3}\\pi\\text{ cm}^3/\\text{s}$ (volume is decreasing).',
+          },
+          {
+            problem: 'If $u = f(x - ct) + g(x + ct)$, prove the wave equation $\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\frac{\\partial^2 u}{\\partial x^2}$.',
+            steps: [
+              'Let $r = x - ct$ and $s = x + ct$, so $u = f(r) + g(s)$.',
+              '$u_t = -c f\'(r) + c g\'(s) \\implies u_{tt} = c^2 f\'\'(r) + c^2 g\'\'(s)$.',
+              '$u_x = f\'(r) + g\'(s) \\implies u_{xx} = f\'\'(r) + g\'\'(s)$.',
+            ],
+            answer: 'Comparing both gives $u_{tt} = c^2 u_{xx}$.',
+          },
+        ],
+      },
+      {
+        num: '02',
+        title: 'Implicit Differentiation via Partial Derivatives',
+        paragraphs: [
+          'Instead of differentiating implicitly term-by-term, move all terms into $F(x, y) = 0$ (or $F(x, y, z) = 0$) and divide partial derivatives directly.',
+        ],
+        formula:
+          '\\frac{dy}{dx} = -\\frac{F_x}{F_y} \\;(F_y \\ne 0), \\qquad \\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}, \\quad \\frac{\\partial z}{\\partial y} = -\\frac{F_y}{F_z} \\;(F_z \\ne 0)',
+        workedExamples: [
+          {
+            problem: 'Find $\\frac{\\partial z}{\\partial x}$ and $\\frac{\\partial z}{\\partial y}$ if $x^3 + y^3 + z^3 + 6xyz = 1$.',
+            steps: [
+              'Let $F(x, y, z) = x^3 + y^3 + z^3 + 6xyz - 1 = 0$.',
+              '$F_x = 3x^2 + 6yz$, $F_y = 3y^2 + 6xz$, $F_z = 3z^2 + 6xy$.',
+              'Apply shortcut: $z_x = -\\frac{3x^2+6yz}{3z^2+6xy} = -\\frac{x^2+2yz}{z^2+2xy}$ and $z_y = -\\frac{y^2+2xz}{z^2+2xy}$.',
+            ],
+            answer: '$\\frac{\\partial z}{\\partial x} = -\\frac{x^2+2yz}{z^2+2xy}$ and $\\frac{\\partial z}{\\partial y} = -\\frac{y^2+2xz}{z^2+2xy}$.',
+          },
+          {
+            problem: 'Find $\\frac{\\partial z}{\\partial x}$ and $\\frac{\\partial z}{\\partial y}$ for $\\log(2x^2 + y - z^3) = 2x$.',
+            steps: [
+              'Let $F(x,y,z) = \\log(2x^2+y-z^3) - 2x = 0$, or differentiate wrt $x$ and $y$ directly:',
+              'Wrt $x$: $\\frac{4x - 3z^2 z_x}{2x^2+y-z^3} = 2 \\implies z_x = -\\frac{4x^2 + 2y - 2z^3 - 4x}{3z^2}$.',
+              'Wrt $y$: $\\frac{1 - 3z^2 z_y}{2x^2+y-z^3} = 0 \\implies 1 - 3z^2 z_y = 0 \\implies z_y = \\frac{1}{3z^2}$.',
+            ],
+            answer: '$\\frac{\\partial z}{\\partial x} = -\\frac{4x^2+2y-2z^3-4x}{3z^2}$ and $\\frac{\\partial z}{\\partial y} = \\frac{1}{3z^2}$.',
+          },
+        ],
       },
     ],
   },
@@ -356,13 +526,15 @@ export const topicsData = {
     sections: [
       {
         num: '01',
-        title: '3-Variable Chain Rule & Gradient Properties',
-        paragraphs: [
-          'For $w = f(x, y, z)$ with $x(t), y(t), z(t)$: $\\frac{dw}{dt} = f_x \\frac{dx}{dt} + f_y \\frac{dy}{dt} + f_z \\frac{dz}{dt} = \\nabla f \\cdot \\mathbf{r}\'(t)$.',
-          'At a point $P_0(x_0, y_0, z_0)$ on the level surface $F(x,y,z)=c$, the tangent plane equation is $F_x(P_0)(x-x_0) + F_y(P_0)(y-y_0) + F_z(P_0)(z-z_0) = 0$.',
+        title: '3-Variable Chain Rule, Directional Derivative & Gradient Properties',
+        bullets: [
+          '**3-Variable Chain Rule**: For $w = f(x(t), y(t), z(t))$, $\\frac{dw}{dt} = f_x \\frac{dx}{dt} + f_y \\frac{dy}{dt} + f_z \\frac{dz}{dt} = \\nabla f \\cdot \\mathbf{r}\'(t)$.',
+          '**Directional Derivative (Limit & Gradient Forms)**: Along unit vector $\\hat{\\mathbf{u}} = a\\mathbf{i} + b\\mathbf{j}$ (normalize $\\hat{\\mathbf{u}} = \\frac{\\vec{\\mathbf{v}}}{\\|\\vec{\\mathbf{v}}\\|}$ if needed), $\\left(\\frac{df}{ds}\\right)_{P_0} = D_{\\mathbf{u}} f = \\lim_{h\\to 0} \\frac{f(x_0+ha, y_0+hb)-f(x_0,y_0)}{h} = \\nabla f \\cdot \\hat{\\mathbf{u}}$.',
+          '**Extremal Rates**: Max rate of increase is $+\\|\\nabla f\\|$ along $+\\nabla f$; max rate of decrease is $-\\|\\nabla f\\|$ along $-\\nabla f$; zero change occurs orthogonal to $\\nabla f$.',
+          '**Tangent Plane**: At $P_0(x_0, y_0, z_0)$ on $F(x,y,z)=c$: $F_x(P_0)(x-x_0) + F_y(P_0)(y-y_0) + F_z(P_0)(z-z_0) = 0$.',
         ],
         formula:
-          'D_{\\mathbf{u}} f(P) = \\nabla f(P) \\cdot \\mathbf{u} = \\|\\nabla f(P)\\| \\cos\\theta',
+          '\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j}, \\qquad D_{\\mathbf{u}} f(P) = \\nabla f(P) \\cdot \\hat{\\mathbf{u}} = \\|\\nabla f(P)\\| \\cos\\theta',
         workedExample: {
           problem:
             'Find the directional derivative of $f(x, y) = x^2 y^3 - 4y$ at $(2, -1)$ in the direction of $\\mathbf{v} = 2\\mathbf{i} + 5\\mathbf{j}$, and the direction of zero change.',
@@ -399,9 +571,12 @@ export const topicsData = {
     sections: [
       {
         num: '01',
-        title: 'Second Derivative Test Classification',
-        paragraphs: [
-          'Let $(a, b)$ be a critical point where $f_x(a,b) = f_y(a,b) = 0$, and let $D(a, b) = f_{xx}(a,b)f_{yy}(a,b) - [f_{xy}(a,b)]^2$.',
+        title: 'Critical Points, First & Second Derivative Tests',
+        bullets: [
+          '**Critical Point**: A point $(a, b)$ where $f_x(a,b) = 0$ and $f_y(a,b) = 0$ (or where $f_x, f_y$ fail to exist).',
+          '**Relative Extrema & Saddle**: Local max if $f(a,b) \\ge f(x,y)$ nearby; local min if $f(a,b) \\le f(x,y)$ nearby; **saddle point** if critical point is neither max nor min.',
+          '**1D First Derivative Test**: Check sign of $f\'(x)$ around critical points: $+ \\to -$ gives **local max**, $- \\to +$ gives **local min**, no sign change gives **inflection**.',
+          '**2D Second Derivative Test**: Compute discriminant $D(a, b) = f_{xx}(a,b)f_{yy}(a,b) - [f_{xy}(a,b)]^2$:',
         ],
         table: {
           headers: ['Condition on D', 'Condition on f_xx', 'Conclusion at (a, b)'],
@@ -487,12 +662,13 @@ export const topicsData = {
     sections: [
       {
         num: '01',
-        title: 'Lagrange Multipliers with One Constraint',
-        paragraphs: [
-          'To maximize or minimize $f(x, y, z)$ subject to $g(x, y, z) = 0$ (assuming $\\nabla g \\ne \\mathbf{0}$), solve $\\nabla f = \\lambda \\nabla g$ together with $g = 0$.',
+        title: 'Lagrange Multipliers (Lagrangian & One Constraint)',
+        bullets: [
+          '**Lagrangian Function (1 Constraint)**: Define $L(x, y, \\lambda) = f(x, y) + \\lambda g(x, y)$ and solve $\\frac{\\partial L}{\\partial x} = 0$, $\\frac{\\partial L}{\\partial y} = 0$, $\\frac{\\partial L}{\\partial \\lambda} = 0$ (equivalently $\\nabla f = \\lambda \\nabla g$, $g = 0$).',
+          '**Closest Point to Origin Pattern**: Minimize squared distance $f(x, y, z) = x^2 + y^2 + z^2$ subject to given plane constraint(s).',
         ],
         formula:
-          '\\nabla f(x,y,z) = \\lambda \\nabla g(x,y,z), \\qquad g(x,y,z) = 0',
+          'L(x,y,\\lambda) = f(x,y) + \\lambda g(x,y), \\qquad \\nabla f = \\lambda \\nabla g, \\quad g = 0',
         workedExample: {
           problem: 'Find the maximum and minimum values of $f(x, y) = xy$ on the ellipse $\\frac{x^2}{8} + \\frac{y^2}{2} = 1$.',
           steps: [
@@ -509,10 +685,10 @@ export const topicsData = {
         num: '02',
         title: 'Two-Constraint Optimization',
         paragraphs: [
-          'When optimizing $f(x, y, z)$ along the intersection curve of two surfaces $g(x, y, z) = 0$ and $h(x, y, z) = 0$, introduce two multipliers $\\lambda$ and $\\mu$.',
+          'When optimizing $f(x, y, z)$ along the intersection of $g = 0$ and $h = 0$, form $L(x, y, z, \\lambda, \\mu) = f + \\lambda g + \\mu h$ and set $L_x = L_y = L_z = L_\\lambda = L_\\mu = 0$.',
         ],
         formula:
-          '\\nabla f = \\lambda \\nabla g + \\mu \\nabla h, \\qquad g = 0, \\quad h = 0',
+          'L = f + \\lambda g + \\mu h \\implies \\nabla f = \\lambda \\nabla g + \\mu \\nabla h, \\qquad g = 0, \\quad h = 0',
         workedExample: {
           problem:
             'Minimize $f(x, y, z) = x^2 + y^2 + z^2$ subject to $x + 2y + 3z = 6$ and $x - y + z = 2$ (or maximize $f(x,y,z) = x + 2y + 3z$ on $x - y + z = 1$ and $x^2 + y^2 = 1$).',
@@ -551,8 +727,9 @@ export const topicsData = {
       {
         num: '01',
         title: 'Algorithm Steps (Two Variables)',
-        paragraphs: [
-          'Starting from an initial guess $\\mathbf{x}_0 = (x_0, y_0)$, perform iterations until $\\|\\nabla f(\\mathbf{x}_k)\\|$ is sufficiently small.',
+        bullets: [
+          '**Direction of Steepest Descent**: $-\\nabla f(x, y)$ points in the fastest local decrease direction.',
+          '**Iterative Update**: $(x_{k+1}, y_{k+1}) = (x_k, y_k) - \\alpha_k \\nabla f(x_k, y_k)$ using either exact line search ($\\phi\'(\\alpha) = 0$) or a small fixed step size (e.g. $\\alpha = 0.1$).',
         ],
         formula:
           '\\mathbf{x}_{k+1} = \\mathbf{x}_k - \\alpha_k \\nabla f(\\mathbf{x}_k), \\qquad \\alpha_k = \\arg\\min_{\\alpha > 0} f(\\mathbf{x}_k - \\alpha \\nabla f(\\mathbf{x}_k))',
@@ -592,19 +769,20 @@ export const topicsData = {
     sections: [
       {
         num: '01',
-        title: 'Formulating an LPP from a Word Problem',
-        paragraphs: [
-          'Suppose a company makes Product A (profit ₹3/unit) and Product B (profit ₹5/unit). Machine M1 has 20 hrs (A needs 1 hr, B needs 2 hrs); Machine M2 has 15 hrs (each needs 1 hr); market demand caps B at 8 units.',
-          'Define decision variables $x = $ units of A, $y = $ units of B. Objective: Maximize $Z = 3x + 5y$ subject to $x + 2y \\le 20$, $x + y \\le 15$, $y \\le 8$, $x, y \\ge 0$.',
+        title: 'General LPP Structure & Key Definitions',
+        bullets: [
+          '**General Form**: Optimize $Z = c_1 x_1 + c_2 x_2 + \\dots + c_n x_n$ subject to linear constraints $a_{i1}x_1 + \\dots + a_{in}x_n \\le b_i$ and $x_1, \\dots, x_n \\ge 0$ (where $c_j$ = objective coefficients, $x_j$ = decision variables, $a_{ij}$ = constraint coefficients, $b_i$ = RHS constants).',
+          '**Basic Feasible Solution**: Any $(x_1, \\dots, x_n)$ satisfying all constraints including non-negativity ($x_j \\ge 0$).',
+          '**Word Problem Example**: Product A (₹3/unit) and Product B (₹5/unit); M1 has 20 hrs ($x + 2y \\le 20$), M2 has 15 hrs ($x + y \\le 15$), demand caps B ($y \\le 8$), maximize $Z = 3x + 5y$.',
         ],
       },
       {
         num: '02',
-        title: 'Step-by-Step Graphical Method & Special Cases',
-        paragraphs: [
-          '1. Convert each inequality into a line $a_i x + b_i y = r_i$ and plot using intercepts.',
-          '2. Shade the common **feasible region** satisfying every constraint.',
-          '3. Solve intersecting line pairs to find coordinates of every **corner point (vertex)** and evaluate $Z = c_1 x + c_2 y$.',
+        title: 'Graphical Method: Bounded vs Unbounded Test',
+        bullets: [
+          '**Bounded Region**: Plot constraint lines, shade the common feasible region, evaluate $Z$ at every corner point (vertex), and pick the optimal value.',
+          '**Unbounded Minimize Check**: Let $Z_{\\min}$ be the smallest value at visible corner points, then graph the open half-plane $Z < Z_{\\min}$. If it has **no common points** with the feasible region, $Z_{\\min}$ is the true minimum; if it overlaps, there is **no minimum solution**.',
+          '**Unbounded Maximize Check**: Graph the open half-plane $Z > Z_{\\max}$. If **no common points** with the feasible region, $Z_{\\max}$ is the true maximum; if it overlaps, there is **no maximum solution**.',
         ],
         table: {
           headers: ['Graphical Case', 'Visual Signature', 'Interpretation'],

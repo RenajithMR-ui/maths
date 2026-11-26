@@ -21,7 +21,6 @@ export const courseConfig = {
     label: 'SAC KSU CET Portal (CSE S1 Mathematics)',
     url: 'https://sac.ksucet.in/notes-and-videos?dept=cse&sem=1&subject=Mathematics',
   },
-  ascPortalUrl: 'https://asc.sficet.in/academics?dept=cse&sem=s1&sub=GAMAT101',
   textbooks: [
     {
       title: "Thomas' Calculus (14th / 15th Edition)",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,6 +15,7 @@ import { topicsData } from '../data/topics';
 import { flashcardsData } from '../data/flashcards';
 import { quizzesData } from '../data/quizzes';
 import { useCourse } from '../context/CourseContext';
+import { GraphLppLab } from './GraphLppLab';
 import { MathText } from './MathText';
 
 export function TopicPage({ topicId }) {
@@ -28,7 +29,12 @@ export function TopicPage({ topicId }) {
   } = useCourse();
 
   const [activeTab, setActiveTab] = useState('notes');
+  const [m4LabMode, setM4LabMode] = useState('lpp');
   const [flippedIds, setFlippedIds] = useState(() => new Set());
+
+  useEffect(() => {
+    setActiveTab('notes');
+  }, [topicId]);
 
   const topic = topicsData[topicId];
 
@@ -109,10 +115,17 @@ export function TopicPage({ topicId }) {
             <button
               type="button"
               className="btn btn-sm btn-primary"
-              onClick={() => openGraphLab({ mode: 'lpp', lppPresetIndex: topic.lppPresetIndex })}
+              onClick={() => {
+                if (topic.id === 'm4-lpp') {
+                  setM4LabMode('lpp');
+                  setActiveTab('lpp');
+                } else {
+                  openGraphLab({ mode: 'lpp', lppPresetIndex: topic.lppPresetIndex });
+                }
+              }}
             >
               <LineChart size={15} />
-              <span>Solve in LPP Graph Lab</span>
+              <span>{topic.id === 'm4-lpp' ? 'Open LPP Solver Tab' : 'Solve in LPP Graph Lab'}</span>
             </button>
           )}
 
@@ -213,6 +226,28 @@ export function TopicPage({ topicId }) {
           <HelpCircle size={15} />
           <span>Topic Quiz ({topicQuizzes.length})</span>
         </button>
+
+        {topic.id === 'm4-lpp' && (
+          <>
+            <button
+              type="button"
+              className={`btn btn-sm ${activeTab === 'lpp' ? 'btn-primary' : ''}`}
+              onClick={() => setActiveTab('lpp')}
+            >
+              <LineChart size={15} />
+              <span>LPP Graphical Solver</span>
+            </button>
+
+            <button
+              type="button"
+              className={`btn btn-sm ${activeTab === 'functions' ? 'btn-primary' : ''}`}
+              onClick={() => setActiveTab('functions')}
+            >
+              <Sparkles size={15} />
+              <span>f(x) &amp; f&apos;(x) Graph Drawer</span>
+            </button>
+          </>
+        )}
       </div>
 
       {/* Tab 1: Study Notes */}
@@ -234,87 +269,170 @@ export function TopicPage({ topicId }) {
           </div>
 
           {/* Numbered Sections */}
-          {topic.sections.map((sec) => (
-            <div key={sec.num} className="card">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                <span className="section-num-badge">{sec.num}</span>
-                <h2 style={{ margin: 0, fontSize: 20 }}>{sec.title}</h2>
-              </div>
-
-              {sec.paragraphs?.map((p, idx) => (
-                <p key={idx} style={{ margin: '0 0 10px', color: 'var(--text-secondary)', fontSize: 15 }}>
-                  <MathText text={p} />
-                </p>
-              ))}
-
-              {sec.formula && <MathText text={`$$${sec.formula}$$`} />}
-
-              {sec.keyIdea && (
-                <div className="callout">
-                  <div style={{ fontWeight: 700, fontSize: 13, color: 'var(--accent)', marginBottom: 4 }}>
-                    KEY IDEA
-                  </div>
-                  <div style={{ fontSize: 14.5 }}>
-                    <MathText text={sec.keyIdea} />
-                  </div>
+          {topic.sections.map((sec) => {
+            const examples = sec.workedExamples || (sec.workedExample ? [sec.workedExample] : []);
+            return (
+              <div key={sec.num} className="card">
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                  <span className="section-num-badge">{sec.num}</span>
+                  <h2 style={{ margin: 0, fontSize: 20 }}>{sec.title}</h2>
                 </div>
-              )}
 
-              {sec.table && (
-                <div className="data-table-wrap">
-                  <table className="data-table">
-                    <thead>
-                      <tr>
-                        {sec.table.headers.map((h) => (
-                          <th key={h}>{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {sec.table.rows.map((row, rIdx) => (
-                        <tr key={rIdx}>
-                          {row.map((cell, cIdx) => (
-                            <td key={cIdx}>
-                              <MathText text={cell} />
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                {sec.paragraphs?.map((p, idx) => (
+                  <p key={idx} style={{ margin: '0 0 10px', color: 'var(--text-secondary)', fontSize: 15 }}>
+                    <MathText text={p} />
+                  </p>
+                ))}
 
-              {sec.workedExample && (
-                <div className="callout callout-purple" style={{ marginBottom: 0 }}>
-                  <div style={{ fontWeight: 700, fontSize: 13, color: 'var(--purple)', marginBottom: 6 }}>
-                    WORKED EXAMPLE
-                  </div>
-                  <div style={{ fontWeight: 600, marginBottom: 10 }}>
-                    <MathText text={sec.workedExample.problem} />
-                  </div>
-                  <ol style={{ margin: '0 0 10px', paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    {sec.workedExample.steps.map((st, sIdx) => (
-                      <li key={sIdx} style={{ fontSize: 14, color: 'var(--text-secondary)' }}>
-                        <MathText text={st} />
-                      </li>
-                    ))}
-                  </ol>
-                  <div
+                {sec.bullets && sec.bullets.length > 0 && (
+                  <ul
                     style={{
-                      paddingTop: 8,
-                      borderTop: '1px solid var(--border-subtle)',
-                      fontSize: 14,
-                      fontWeight: 600,
+                      margin: '8px 0 12px',
+                      paddingLeft: 20,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 7,
+                      color: 'var(--text-secondary)',
+                      fontSize: 14.5,
                     }}
                   >
-                    Result: <MathText text={sec.workedExample.answer} />
+                    {sec.bullets.map((b, bIdx) => (
+                      <li key={bIdx}>
+                        <MathText text={b} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {sec.formula && <MathText text={`$$${sec.formula}$$`} />}
+
+                {sec.keyIdea && (
+                  <div className="callout">
+                    <div style={{ fontWeight: 700, fontSize: 13, color: 'var(--accent)', marginBottom: 4 }}>
+                      KEY IDEA
+                    </div>
+                    <div style={{ fontSize: 14.5 }}>
+                      <MathText text={sec.keyIdea} />
+                    </div>
                   </div>
+                )}
+
+                {sec.table && (
+                  <div className="data-table-wrap">
+                    <table className="data-table">
+                      <thead>
+                        <tr>
+                          {sec.table.headers.map((h) => (
+                            <th key={h}>
+                              <MathText text={h} />
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sec.table.rows.map((row, rIdx) => (
+                          <tr key={rIdx}>
+                            {row.map((cell, cIdx) => (
+                              <td key={cIdx}>
+                                <MathText text={cell} />
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+
+                {examples.map((ex, exIdx) => (
+                  <div
+                    key={exIdx}
+                    className="callout callout-purple"
+                    style={{ marginBottom: exIdx === examples.length - 1 ? 0 : 12 }}
+                  >
+                    <div style={{ fontWeight: 700, fontSize: 13, color: 'var(--purple)', marginBottom: 6 }}>
+                      {examples.length > 1 ? `WORKED EXAMPLE ${exIdx + 1}` : 'WORKED EXAMPLE'}
+                    </div>
+                    <div style={{ fontWeight: 600, marginBottom: 10 }}>
+                      <MathText text={ex.problem} />
+                    </div>
+                    <ol style={{ margin: '0 0 10px', paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      {ex.steps.map((st, sIdx) => (
+                        <li key={sIdx} style={{ fontSize: 14, color: 'var(--text-secondary)' }}>
+                          <MathText text={st} />
+                        </li>
+                      ))}
+                    </ol>
+                    <div
+                      style={{
+                        paddingTop: 8,
+                        borderTop: '1px solid var(--border-subtle)',
+                        fontSize: 14,
+                        fontWeight: 600,
+                      }}
+                    >
+                      Result: <MathText text={ex.answer} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+
+          {/* Embedded Interactive Graph & LPP Platform inside Module 4 Topic 3 */}
+          {topic.id === 'm4-lpp' && (
+            <div className="card">
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: 12,
+                  marginBottom: 16,
+                }}
+              >
+                <div>
+                  <span className="badge" style={{ marginBottom: 6 }}>
+                    Interactive Platform · Module 4 Topic 3
+                  </span>
+                  <h2 style={{ margin: '2px 0 0', fontSize: 21 }}>
+                    Graph &amp; LPP Interactive Solver
+                  </h2>
                 </div>
-              )}
+
+                <div className="mini-navbar" style={{ marginBottom: 0 }}>
+                  <button
+                    type="button"
+                    className={`mini-nav-btn ${m4LabMode === 'lpp' ? 'active' : ''}`}
+                    onClick={() => setM4LabMode('lpp')}
+                  >
+                    <LineChart size={15} />
+                    <span>LPP Graphical Solver</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`mini-nav-btn ${m4LabMode === 'functions' ? 'active' : ''}`}
+                    onClick={() => setM4LabMode('functions')}
+                  >
+                    <Sparkles size={15} />
+                    <span>Function &amp; f&apos;(x) Graph Drawer</span>
+                  </button>
+                </div>
+              </div>
+
+              <GraphLppLab embedded initialMode={m4LabMode} />
             </div>
-          ))}
+          )}
         </div>
+      )}
+
+      {/* Dedicated Embedded Graph & LPP Tabs inside Module 4 Topic 3 */}
+      {topic.id === 'm4-lpp' && activeTab === 'lpp' && (
+        <GraphLppLab embedded initialMode="lpp" />
+      )}
+      {topic.id === 'm4-lpp' && activeTab === 'functions' && (
+        <GraphLppLab embedded initialMode="functions" />
       )}
 
       {/* Tab 2: Quick Flashcards */}

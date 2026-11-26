@@ -69,6 +69,13 @@ export const flashcardsData = [
     back: 'If $f, f_x, f_y, f_{xy}, f_{yx}$ are continuous on an open disk, then $f_{xy}(a, b) = f_{yx}(a, b)$.',
   },
   {
+    id: 'fc-9b',
+    moduleId: 2,
+    topicId: 'm2-chain-implicit',
+    front: 'Implicit partial derivative formulas for $F(x, y, z) = 0$?',
+    back: '$$\\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}, \\qquad \\frac{\\partial z}{\\partial y} = -\\frac{F_y}{F_z} \\quad (F_z \\ne 0)$$',
+  },
+  {
     id: 'fc-10',
     moduleId: 3,
     topicId: 'm3-gradient',

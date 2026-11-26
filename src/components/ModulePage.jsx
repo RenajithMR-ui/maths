@@ -78,13 +78,6 @@ export function ModulePage({ moduleId }) {
                 <ExternalLink size={13} />
               </a>
             )}
-            {mod.formulaPdfUrl && (
-              <a href={mod.formulaPdfUrl} target="_blank" rel="noreferrer" className="btn btn-sm">
-                <FileText size={15} />
-                <span>SAC Formula Sheet PDF</span>
-                <ExternalLink size={13} />
-              </a>
-            )}
             <div style={{ fontSize: 12.5, color: 'var(--text-muted)', marginTop: 4 }}>
               Flashcards mastered: {masteredCount}/{modCards.length}
             </div>
@@ -158,7 +151,7 @@ export function ModulePage({ moduleId }) {
                 >
                   <div style={{ flex: '1 1 520px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-                      <span className="section-num-badge">Topic 0{idx + 1}</span>
+                      <span className="section-num-badge">Topic {String(idx + 1).padStart(2, '0')}</span>
                       <h2 style={{ margin: 0, fontSize: 19 }}>{topic.title}</h2>
                     </div>
                     <p style={{ margin: '0 0 10px', fontSize: 14, color: 'var(--text-secondary)' }}>

@@ -66,11 +66,6 @@ export function HomePage() {
                 <LineChart size={16} style={{ color: 'var(--accent)' }} />
                 <span>Graph &amp; LPP Lab</span>
               </button>
-
-              <a href={courseConfig.referenceBanner.url} target="_blank" rel="noreferrer" className="btn">
-                <ExternalLink size={15} />
-                <span>SAC Notes</span>
-              </a>
             </div>
           </div>
         </div>
@@ -100,11 +95,11 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* 4 Modules Bento Track */}
+      {/* Modules Bento Track */}
       <div className="section-heading">
         <div>
-          <h2>4-Module Learning Track</h2>
-          <p>Structured KTU 2024 GAMAT101 notes with embedded graph tools inside Modules 2 &amp; 4.</p>
+          <h2>{modulesData.length}-Module Learning Track</h2>
+          <p>Structured mathematics study notes with embedded graph tools inside Modules 2 &amp; 4.</p>
         </div>
         <button type="button" className="btn btn-sm" onClick={() => navigate('/about')}>
           <Sparkles size={14} />
@@ -222,12 +217,6 @@ export function HomePage() {
                       <span>SAC Videos</span>
                     </a>
                   )}
-                  {mod.formulaPdfUrl && (
-                    <a href={mod.formulaPdfUrl} target="_blank" rel="noreferrer" className="btn btn-sm">
-                      <FileText size={14} />
-                      <span>SAC PDF</span>
-                    </a>
-                  )}
                 </div>
 
                 <button
@@ -250,7 +239,7 @@ export function HomePage() {
           <h2>University Question Papers &amp; Year Archive</h2>
           <p>
             Official SAC KSU CET Mathematics question papers organized by batch &amp; exam year (outside
-            the 4 modules).
+            the modules).
           </p>
         </div>
 
@@ -300,16 +289,12 @@ export function HomePage() {
         ))}
       </section>
 
-      {/* Selective Notes Highlights from ASC SFI CET (GAMAT101) */}
+      {/* Selective Exam Highlights */}
       <div className="section-heading">
         <div>
-          <h2>Selective Exam Highlights (ASC SFI CET Reference)</h2>
-          <p>Curated high-yield takeaways distilled from GAMAT101 important topics &amp; practice sets.</p>
+          <h2>Selective Exam Highlights</h2>
+          <p>Curated high-yield takeaways distilled from important topics &amp; practice sets.</p>
         </div>
-        <a href={courseConfig.ascPortalUrl} target="_blank" rel="noreferrer" className="btn btn-sm">
-          <span>Open ASC GAMAT101 Portal</span>
-          <ExternalLink size={13} />
-        </a>
       </div>
 
       <section className="grid-2">
@@ -353,7 +338,7 @@ export function HomePage() {
           <GitBranch size={22} style={{ color: 'var(--purple)', marginBottom: 10 }} />
           <h3 style={{ margin: '0 0 6px', fontSize: 16 }}>Syllabus Mind Map</h3>
           <p style={{ margin: 0, fontSize: 13, color: 'var(--text-secondary)' }}>
-            Visual hierarchy linking all 4 modules and 12 topics.
+            Visual hierarchy linking all {modulesData.length} modules and {totalTopics} topics.
           </p>
         </div>
 

@@ -1,11 +1,9 @@
 /**
  * ============================================================================
- * QUESTION PAPERS (OUTER OF MODULES), PYQ ANALYZER & SELECTIVE ASC HIGHLIGHTS
+ * QUESTION PAPERS (OUTER OF MODULES), PYQ ANALYZER & EXAM HIGHLIGHTS
  * ============================================================================
  * Question Papers sourced from:
  *   https://sac.ksucet.in/question-papers?dept=cse&sem=1&subject=Mathematics
- * Selective reference highlights sourced from:
- *   https://asc.sficet.in/academics?dept=cse&sem=s1&sub=GAMAT101
  */
 
 export const pyqData = {
@@ -109,28 +107,28 @@ export const pyqData = {
     },
   ],
 
-  // Selective highlights referenced from ASC SFI CET (GAMAT101) — intentionally selective
+  // High-yield exam highlights per module
   ascSelectiveNotes: [
     {
-      tag: 'ASC · Important Topics',
+      tag: 'Module 1 · Important Topics',
       title: 'Piecewise Continuity & Linearization Drills',
       note: 'Expect 3-mark Part A problems checking $LHL = RHL = f(c)$ and linearizing $\\cos x$ or $\\sqrt{x+a}$ near $a$.',
       moduleId: 1,
     },
     {
-      tag: 'ASC · Practice Set Pointer',
-      title: 'Two-Path Non-Existence & Clairaut Verification',
-      note: 'Compare $y = mx$ vs $x = my^2$ for 2-variable limits, and verify $f_{xy} = f_{yx}$ cleanly in Part B.',
+      tag: 'Module 2 · Practice Pointer',
+      title: 'Two-Path Non-Existence, Clairaut & Chain Rule',
+      note: 'Compare $y = mx$ vs $x = my^2$ for 2-variable limits, verify $f_{xy} = f_{yx}$, and apply $w_t = f_x x_t + f_y y_t$.',
       moduleId: 2,
     },
     {
-      tag: 'ASC · Exam Focus',
+      tag: 'Module 3 · Exam Focus',
       title: 'Gradient Steepest Direction & Saddle Points',
       note: 'Normalize $\\mathbf{u} = \\mathbf{v}/\\|\\mathbf{v}\\|$ before $D_{\\mathbf{u}}f = \\nabla f \\cdot \\mathbf{u}$, and classify extrema via $D = f_{xx}f_{yy} - f_{xy}^2$.',
       moduleId: 3,
     },
     {
-      tag: 'ASC · Optimization Focus',
+      tag: 'Module 4 · Optimization Focus',
       title: 'Lagrange (1 & 2 Constraints) + Graphical LPP',
       note: 'Pair $\\nabla f = \\lambda \\nabla g + \\mu \\nabla h$ with Steepest Descent step-size $\\phi\'(\\alpha)=0$ and corner-point LPP tables.',
       moduleId: 4,

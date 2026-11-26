@@ -9,7 +9,7 @@ const DATA_FILES = [
   },
   {
     file: 'src/data/modules.js',
-    purpose: 'Defines the 4 modules, summaries, hours, SAC YouTube playlists, PDF links, and topic ID ordering.',
+    purpose: 'Defines the 4 modules, summaries, hours, SAC YouTube playlists, and topic ID ordering.',
   },
   {
     file: 'src/data/topics.js',

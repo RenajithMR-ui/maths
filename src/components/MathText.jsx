@@ -2,8 +2,8 @@ import React from 'react';
 import katex from 'katex';
 
 /**
- * Renders strings containing inline LaTeX ($...$) and block LaTeX ($$...$$).
- * Falls back cleanly to plain text if KaTeX encounters a syntax error.
+ * Renders strings containing inline LaTeX ($...$), block LaTeX ($$...$$),
+ * and **bold** inline spans cleanly.
  */
 export function MathText({ text, className = '' }) {
   if (text == null) return null;
@@ -28,12 +28,27 @@ export function MathText({ text, className = '' }) {
                 const tex = sub.slice(1, -1).trim();
                 return <KatexSpan key={`${i}-${j}`} tex={tex} displayMode={false} />;
               }
-              return <React.Fragment key={`${i}-${j}`}>{sub}</React.Fragment>;
+              return <FormattedText key={`${i}-${j}`} text={sub} />;
             })}
           </React.Fragment>
         );
       })}
     </span>
+  );
+}
+
+function FormattedText({ text }) {
+  if (!text) return null;
+  const boldParts = text.split(/(\*\*[^*\n]+?\*\*)/g);
+  return (
+    <>
+      {boldParts.map((seg, idx) => {
+        if (seg.startsWith('**') && seg.endsWith('**') && seg.length > 4) {
+          return <strong key={idx}>{seg.slice(2, -2)}</strong>;
+        }
+        return <React.Fragment key={idx}>{seg}</React.Fragment>;
+      })}
+    </>
   );
 }
 
