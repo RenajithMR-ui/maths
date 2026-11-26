@@ -1,0 +1,113 @@
+/**
+ * ============================================================================
+ * FORMULA & THEOREM SHEET DATA
+ * ============================================================================
+ * Used in the Formula Cheat Sheet (#/formulas) and quick search.
+ */
+
+export const formulasData = [
+  {
+    id: 'f-m1-1',
+    moduleId: 1,
+    category: 'Limits & Continuity',
+    title: 'Continuity at a Point x = c',
+    latex: '\\lim_{x \\to c} f(x) = f(c)',
+    note: 'Requires (1) f(c) defined, (2) limit exists (LHL = RHL), and (3) limit equals f(c).',
+  },
+  {
+    id: 'f-m1-1b',
+    moduleId: 1,
+    category: 'Limits & Continuity',
+    title: 'L’Hôpital’s Rule (0/0 or ∞/∞)',
+    latex: '\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f\'(x)}{g\'(x)}',
+    note: 'Applies only to 0/0 or ∞/∞ indeterminate forms when f and g are differentiable near c.',
+  },
+  {
+    id: 'f-m1-2',
+    moduleId: 1,
+    category: 'Differentiation',
+    title: 'Linearization (Linear Approximation)',
+    latex: 'L(x) = f(a) + f\'(a)(x - a)',
+    note: 'Best linear approximation of f(x) near x = a (tangent line approximation).',
+  },
+  {
+    id: 'f-m1-3',
+    moduleId: 1,
+    category: 'Differentiation',
+    title: 'Chain Rule & Implicit Differentiation',
+    latex: '\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}, \\qquad \\frac{dy}{dx} = -\\frac{F_x}{F_y}',
+    note: 'For implicit relation F(x, y) = 0 where F_y ≠ 0.',
+  },
+  {
+    id: 'f-m1-4',
+    moduleId: 1,
+    category: 'Curve Sketching',
+    title: 'Second Derivative Test for Concavity',
+    latex: 'f\'\'(x) > 0 \\implies \\text{Concave Up}, \\qquad f\'\'(x) < 0 \\implies \\text{Concave Down}',
+    note: 'Point of inflection occurs where concavity changes sign.',
+  },
+  {
+    id: 'f-m2-1',
+    moduleId: 2,
+    category: 'Partial Derivatives',
+    title: 'Mixed Derivative Theorem (Clairaut)',
+    latex: '\\frac{\\partial^2 f}{\\partial x \\partial y} = \\frac{\\partial^2 f}{\\partial y \\partial x} \\quad (f_{yx} = f_{xy})',
+    note: 'Holds whenever f, f_x, f_y, f_xy, and f_yx are continuous on an open region.',
+  },
+  {
+    id: 'f-m2-2',
+    moduleId: 2,
+    category: 'Chain Rule (2 Variables)',
+    title: 'Chain Rule along a Curve w = f(x(t), y(t))',
+    latex: '\\frac{dw}{dt} = \\frac{\\partial f}{\\partial x}\\frac{dx}{dt} + \\frac{\\partial f}{\\partial y}\\frac{dy}{dt}',
+    note: 'Extends similarly for two independent parameters (u, v) via ∂w/∂u and ∂w/∂v.',
+  },
+  {
+    id: 'f-m3-1',
+    moduleId: 3,
+    category: 'Gradient & Directional Derivative',
+    title: 'Gradient Vector & Directional Derivative',
+    latex: '\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j}, \\qquad D_{\\mathbf{u}}f = \\nabla f \\cdot \\mathbf{u}',
+    note: 'u must be a unit vector (||u|| = 1). Max increase is ||∇f|| in the direction of ∇f.',
+  },
+  {
+    id: 'f-m3-1b',
+    moduleId: 3,
+    category: 'Surfaces',
+    title: 'Tangent Plane to Level Surface F(x, y, z) = c',
+    latex: 'F_x(P_0)(x - x_0) + F_y(P_0)(y - y_0) + F_z(P_0)(z - z_0) = 0',
+    note: 'Normal vector to the surface at P_0 is the gradient ∇F(P_0).',
+  },
+  {
+    id: 'f-m3-2',
+    moduleId: 3,
+    category: 'Extrema (2 Variables)',
+    title: 'Second Derivative Test (Discriminant)',
+    latex: 'D(a,b) = f_{xx}f_{yy} - (f_{xy})^2',
+    note: 'D > 0 & f_xx > 0 → Local Min; D > 0 & f_xx < 0 → Local Max; D < 0 → Saddle Point; D = 0 → Inconclusive.',
+  },
+  {
+    id: 'f-m4-1',
+    moduleId: 4,
+    category: 'Constrained Optimization',
+    title: 'Lagrange Multipliers (1 & 2 Constraints)',
+    latex: '\\nabla f = \\lambda \\nabla g, \\qquad \\nabla f = \\lambda \\nabla g + \\mu \\nabla h',
+    note: 'Solve together with constraint equation(s) g(x,y,z) = 0 (and h(x,y,z) = 0).',
+  },
+  {
+    id: 'f-m4-2',
+    moduleId: 4,
+    category: 'Numerical Optimization',
+    title: 'Method of Steepest Descent Update',
+    latex: '\\mathbf{x}_{k+1} = \\mathbf{x}_k - \\alpha_k \\nabla f(\\mathbf{x}_k)',
+    note: 'Choose step size α_k > 0 minimizing φ(α) = f(x_k - α ∇f(x_k)) using dφ/dα = 0.',
+  },
+  {
+    id: 'f-m4-3',
+    moduleId: 4,
+    category: 'Linear Programming',
+    title: 'Standard 2-Variable LPP Form',
+    latex: '\\text{Optimize } Z = c_1 x + c_2 y \\quad \\text{s.t. } a_i x + b_i y \\le (\\ge) r_i, \\; x, y \\ge 0',
+    note: 'Fundamental Theorem of LPP: if an optimal solution exists, it occurs at a corner point (vertex) of the feasible region.',
+  },
+];
